@@ -1,0 +1,4 @@
+Strindberg; Henrik; Sverige; ; ;
+Söderlundh; Lille Bror; Sverige; 1912; 1957;
+Sønstevold; Gunnar; Norge; 1912; 1991;
+Sønstevold; Maj; Norge, Sverige; 1917; 1996;

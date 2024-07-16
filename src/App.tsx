@@ -2,6 +2,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import {Button} from "@mui/material";
+import {findComposer} from "./FindComposers.ts";
 
 const NoResults = () => {
     return <Box
@@ -39,8 +40,8 @@ function App() {
     const handleEnterPress = (event: React.KeyboardEvent) => {
         if (event.key === 'Enter') {
             console.log('Enter key pressed');
-            setQuery(nextQuery)
-            // Call any function you want here
+            setQuery(nextQuery);
+            findComposer(query);
         }
     };
 
