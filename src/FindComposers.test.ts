@@ -1,12 +1,18 @@
 import {expect, test} from '@jest/globals';
-import {unpackComposers} from "./FindComposers";
+import {getComposers, unpackComposers} from "./FindComposers";
 
 const fourComposers = "\
-H4sIAKrhlmYC/wsuKcrMS0lKLUq39kjNK8rMtg4uSy3KTE+1trbmCj68LSW1KKc0LyXD2icz\
-JydVwakovwiuwtDS0AhImJqDVO7IKy5JLcvPSbF2L83LSyyy9ssvQqixNERV45uYBVGgo4Bk\
-mjlIpZk1AMSaR3iUAAAA";
+H4sIANfvlmYC/wsuKcrMS0lKLUq39kjNK8rMtg4uSy3KTE+1NrQ0NbG25go+vC0ltSinNC8l\
+w9qpKL9IwbEiNUdBySczJydVASSghKTD0AikzRyka0decUlqWX5OirV7aV5eYpG1X34RQo2l\
+Iaoa38QsiAIdBSTTzEEqzawB3UBrFqQAAAA=";
 
 test('unpacking the composers BLOB', async () => {
     const composers = await unpackComposers(fourComposers);
-    expect(composers.length).toEqual(145);
+    expect(composers.length).toEqual(161);
+});
+
+test('producing a list of composers', async () => {
+    const composers = await getComposers(fourComposers)
+    expect(composers.length).toEqual(4);
+    expect(composers[1].givenName).toEqual(['Bror', 'Axel', '"Lille', 'Bror"']);
 });

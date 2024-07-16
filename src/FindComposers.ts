@@ -2,11 +2,11 @@
 import {packedComposers} from './data';
 
 type Composer = {
-    givenName: [string];
-    surname: [string];
+    surname: string[];
+    givenName: string[];
+    nationality: string[];
     birth: number;
     death: number;
-    nationality: [string];
     comments: string;
     language?: string;
 };
@@ -68,14 +68,23 @@ export async function unpackComposers(packedComposers: string): Promise<string> 
     // return decompressBlob(blob).then((decompressed) => {return decompressed.text();});
 }
 
-export async function getComposers(): Promise<Composer[]> {
+export async function getComposers(packedComposers: string): Promise<Composer[]> {
     const composers = await unpackComposers(packedComposers);
     const lines = composers.split('\n');
     const composersList: Composer[] = [];
     for (const line of lines) {
         const parts = line.split(';');
+        const composer: Composer = {
+            surname: parts[0].split(' '),
+            givenName: parts[1].split(' '),
+            nationality: parts[2].split(', '),
+            birth: parseInt(parts[3]),
+            death: parseInt(parts[4]),
+            comments: parts[5],
+        };
+        composersList.push(composer);
     }
-    return [];
+    return composersList;
 }
 
 export function findComposer(query: string): Composer[] {
