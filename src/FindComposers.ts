@@ -1,15 +1,26 @@
 // import * as zlib from 'zlib';
 import {packedComposers} from './data';
 
-type Composer = {
-    surname: string[];
-    givenName: string[];
-    nationality: string[];
+let defaultComposerDb: IComposerDb | null = null;
+
+interface IDbComposer {
+    surname?: string[];
+    givenName?: string[];
+    country: string[];
     birth: number;
     death: number;
-    comments: string;
-    language?: string;
-};
+    note?: string;
+}
+
+export interface IComposer {
+    id: number;
+    surname: string;
+    givenName: string;
+    country: string;
+    birth: number;
+    death: number;
+    note: string;
+}
 
 function base64ToBlob(base64: string,
                       contentType: string = '',
@@ -61,33 +72,151 @@ async function decompressBlob(blob: Blob) {
     return new Response(decompressedStream).blob();
 }
 
-
-export async function unpackComposers(packedComposers: string): Promise<string> {
+export async function unpackComposers(packedComposers: string) {
     const blob = base64ToBlob(packedComposers);
-    return (await decompressBlob(blob)).text();
+    const str = await (await decompressBlob(blob)).text();
+    return eval(str) as IDbComposer[];
     // return decompressBlob(blob).then((decompressed) => {return decompressed.text();});
 }
 
-export async function getComposers(packedComposers: string): Promise<Composer[]> {
-    const composers = await unpackComposers(packedComposers);
-    const lines = composers.split('\n');
-    const composersList: Composer[] = [];
-    for (const line of lines) {
-        const parts = line.split(';');
-        const composer: Composer = {
-            surname: parts[0].split(' '),
-            givenName: parts[1].split(' '),
-            nationality: parts[2].split(', '),
-            birth: parseInt(parts[3]),
-            death: parseInt(parts[4]),
-            comments: parts[5],
-        };
-        composersList.push(composer);
-    }
-    return composersList;
+// export async function getComposers(packedComposers: string): Promise<Composer[]> {
+//     const composers = await unpackComposers(packedComposers);
+//     const lines = composers.split('\n');
+//     const composersList: Composer[] = [];
+//     for (const line of lines) {
+//         const parts = line.split(';');
+//         const composer: Composer = {
+//             surname: parts[0].split(' '),
+//             givenName: parts[1].split(' '),
+//             nationality: parts[2].split(', '),
+//             birth: parseInt(parts[3]),
+//             death: parseInt(parts[4]),
+//             comments: parts[5],
+//         };
+//         composersList.push(composer);
+//     }
+//     return composersList;
+// }
+
+type Letter = {
+    char: string;
+    index: number;
+};
+
+type Query = {
+    length: number;
+    letters: Letter[];
+};
+
+type IndexEntry = {
+    name: string;
+    index: number;
 }
 
-export function findComposer(query: string): Composer[] {
+export interface IComposerDb {
+    composers: IComposer[];
+    surnames: IndexEntry[];
+    givenNames: IndexEntry[];
+}
+
+export function buildIndex(composers: IDbComposer[]): IComposerDb {
+    const surnames: IndexEntry[] = [];
+    const givenNames: IndexEntry[] = [];
+    const resultComposers: IComposer[] = [];
+
+    for (let i = 0; i < composers.length; i++) {
+        const {
+            birth,
+            country,
+            death,
+            givenName,
+            note,
+            surname
+        } = composers[i];
+
+        let joinedSurname = '';
+        if (surname) {
+            for (const name of surname) {
+                surnames.push({name: name.toUpperCase(), index: i});
+            }
+            joinedSurname = surname.join(' ');
+        }
+
+        let joinedGivenName: string = '';
+        if (givenName) {
+            for (const name of givenName) {
+                givenNames.push({name: name.toUpperCase(), index: i});
+            }
+            joinedGivenName = givenName.join(' ');
+        }
+
+        resultComposers.push({
+            id: i,
+            surname: joinedSurname,
+            givenName: joinedGivenName,
+            country: country.join(', '),
+            birth: birth,
+            death: death,
+            note: note || '',
+        });
+    }
+
+    const compare = (a: IndexEntry, b: IndexEntry) => {
+        if (a.name.length !== b.name.length) {
+            return a.name.length - b.name.length;
+        }
+        return a.name.localeCompare(b.name);
+    }
+
+    surnames.sort(compare);
+    givenNames.sort(compare);
+    return {composers: resultComposers, surnames, givenNames};
+}
+
+export async function getDefaultComposerDb()
+{
+    if (defaultComposerDb === null) {
+        defaultComposerDb = buildIndex(await unpackComposers(packedComposers));
+    }
+    return defaultComposerDb;
+}
+
+function buildQuery(name: string): Query {
+    const letters: Letter[] = [];
+    for (let i = 0; i < name.length; i++) {
+        letters.push({char: name[i].toUpperCase(), index: i});
+    }
+    return {length: name.length, letters};
+}
+
+// function binarySearch(query: Query, index: IndexEntry[], db: ComposerDb): IComposer[] {
+//     const results: IComposer[] = [];
+//     let min = 0;
+//     let max = index.length - 1;
+//     while (min <= max) {
+//         const mid = Math.floor((min + max) / 2);
+//         const entry = index[mid];
+//         let i = 0;
+//         let j = 0;
+//         while (i < query.length && j < entry.name.length) {
+//             if (query.letters[i].char === entry.name[j]) {
+//                 i++;
+//             }
+//             j++;
+//         }
+//         if (i === query.length) {
+//             results.push(entry.index);
+//         }
+//         if (query.letters[i].char < entry.name[j]) {
+//             max = mid - 1;
+//         } else {
+//             min = mid + 1;
+//         }
+//     }
+//     return results;
+// }
+
+export function findComposerSurnames(query: string, db: IComposerDb): IDbComposer[] {
     // var composers: string;
     console.log("Hello from findComposer");
     return [];

@@ -8,7 +8,7 @@ import type {Config} from 'jest';
 const config: Config = {
 
   transform: {
-    "^.+.tsx?$": ["ts-jest", {}],
+    "^.+.tsx?$": ["ts-jest", {diagnostics: {ignoreCodes: ['TS151001']}}],
   },
   // All imported modules in your tests should be mocked automatically
   // automock: false,
