@@ -181,13 +181,13 @@ export async function getDefaultComposerDb()
     return defaultComposerDb;
 }
 
-function buildQuery(name: string): Query {
-    const letters: Letter[] = [];
-    for (let i = 0; i < name.length; i++) {
-        letters.push({char: name[i].toUpperCase(), index: i});
-    }
-    return {length: name.length, letters};
-}
+// function buildQuery(name: string): Query {
+//     const letters: Letter[] = [];
+//     for (let i = 0; i < name.length; i++) {
+//         letters.push({char: name[i].toUpperCase(), index: i});
+//     }
+//     return {length: name.length, letters};
+// }
 
 // function binarySearch(query: Query, index: IndexEntry[], db: ComposerDb): IComposer[] {
 //     const results: IComposer[] = [];

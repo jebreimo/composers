@@ -8,17 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TablePagination from '@mui/material/TablePagination';
 import TableRow from '@mui/material/TableRow';
 import TableSortLabel from '@mui/material/TableSortLabel';
-// import Toolbar from '@mui/material/Toolbar';
-// import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
-// import IconButton from '@mui/material/IconButton';
-// import Tooltip from '@mui/material/Tooltip';
-// import FormControlLabel from '@mui/material/FormControlLabel';
-// import Switch from '@mui/material/Switch';
-// import DeleteIcon from '@mui/icons-material/Delete';
-// import FilterListIcon from '@mui/icons-material/FilterList';
 import {visuallyHidden} from '@mui/utils';
-// import TextField from "@mui/material/TextField";
 import Box from '@mui/material/Box'; // Box must be imported last to avoid a bug in the MUI library (theme initialization).
 import {getDefaultComposerDb, IComposer} from "./FindComposers.ts";
 
@@ -53,6 +44,7 @@ interface HeadCell {
     id: keyof IComposer;
     label: string;
     numeric: boolean;
+    width: string;
 }
 
 const headCells: readonly HeadCell[] = [
@@ -61,36 +53,42 @@ const headCells: readonly HeadCell[] = [
         numeric: false,
         disablePadding: true,
         label: 'Surname',
+        width: "15%"
     },
     {
         id: 'givenName',
         numeric: false,
         disablePadding: true,
         label: 'Given name',
+        width: "20%"
     },
     {
         id: 'country',
         numeric: false,
         disablePadding: true,
         label: 'Nationality',
+        width: "15%"
     },
     {
         id: 'birth',
         numeric: true,
         disablePadding: false,
         label: 'Born',
+        width:"5%"
     },
     {
         id: 'death',
         numeric: true,
         disablePadding: false,
         label: 'Died',
+        width: "5%"
     },
     {
         id: 'note',
         numeric: false,
         disablePadding: true,
         label: 'Note',
+        width: "40%"
     },
 ];
 
@@ -122,6 +120,7 @@ function EnhancedTableHead(props: EnhancedTableProps) {
                         align={headCell.numeric ? 'right' : 'left'}
                         padding={headCell.disablePadding ? 'none' : 'normal'}
                         sortDirection={orderBy === headCell.id ? order : false}
+                        width={headCell.width}
                     >
                         <TableSortLabel
                             active={orderBy === headCell.id}
@@ -142,52 +141,14 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     );
 }
 
-// function EnhancedTableToolbar() {
-//
-//     return (
-//         <Toolbar
-//             sx={{
-//                 pl: {sm: 2},
-//                 pr: {xs: 1, sm: 1},
-//             }}
-//         >
-//             <Typography
-//                 sx={{flex: '1 1 100%'}}
-//                 variant="h6"
-//                 id="tableTitle"
-//                 component="div"
-//             >
-//                 Composers
-//             </Typography>
-//             <TextField
-//                 id="filled-search"
-//                 label="Given name"
-//                 type="search"
-//                 variant="standard"
-//                 // onChange={(e) => setNextQuery(e.target.value)}
-//                 // onKeyDown={handleEnterPress}
-//             />
-//             <TextField
-//                 id="filled-search"
-//                 label="Given name"
-//                 type="search"
-//                 variant="standard"
-//                 // onChange={(e) => setNextQuery(e.target.value)}
-//                 // onKeyDown={handleEnterPress}
-//             />
-//         </Toolbar>
-//     );
-// }
-
 export default function EnhancedTable() {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof IComposer>('surname');
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
 
     const handleRequestSort = (
-        // @ts-expect-error - event unused
-        event: React.MouseEvent<unknown>,
+        _ev: React.MouseEvent<unknown>,
         property: keyof IComposer,
     ) => {
         const isAsc = orderBy === property && order === 'asc';
@@ -195,13 +156,12 @@ export default function EnhancedTable() {
         setOrderBy(property);
     };
 
-    // @ts-expect-error - event unused
-    const handleChangePage = (event: unknown, newPage: number) => {
+    const handleChangePage = (_ev: unknown, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setRowsPerPage(parseInt(event.target.value, 10));
+    const handleChangeRowsPerPage = (ev: React.ChangeEvent<HTMLInputElement>) => {
+        setRowsPerPage(parseInt(ev.target.value, 10));
         setPage(0);
     };
 
@@ -219,7 +179,7 @@ export default function EnhancedTable() {
     );
 
     return (
-        <Box sx={{width: '100%'}}>
+        <Box sx={{width: '90%'}}>
             <Paper sx={{width: '100%', mb: 2}}>
                 {/*<EnhancedTableToolbar/>*/}
                 <TableContainer>
@@ -277,7 +237,7 @@ export default function EnhancedTable() {
                     </Table>
                 </TableContainer>
                 <TablePagination
-                    rowsPerPageOptions={[5, 10, 25]}
+                    rowsPerPageOptions={[10, 25, 50]}
                     component="div"
                     count={composerDb.composers.length}
                     rowsPerPage={rowsPerPage}
