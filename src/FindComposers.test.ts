@@ -1,15 +1,16 @@
 import {expect, test} from '@jest/globals';
-import {unpackComposers} from "./FindComposers";
+import {unpackComposerDb} from "./FindComposers";
 
 const fourComposers = "\
-H4sIACy4l2YC/5XPsQ6CQAwG4FcxnVkwKoFNFx2UxZEwHF6Dp2cvKXdEY3gt4+6LCcRBRKNO\
-l/5t8/WSMxSOSRwQogTWlhXJDDmH1INclUjxo7VAYrVv4o1xZPnUzpfIKscmzRTbLUTgh+MR\
-eCBRtCVUXle4XSSydiS3PWLGhuvV6RF1/SyV1jhosx9Qf/iE1jcEffhKhcXSaNmD545IvDKx\
-4S9I6P+DrMTureB9+FDQtSZQpXdZgwfarQEAAA==";
+H4sIAOADwmYC/41QuQ6CQBD9FTI1DcYj0mmjhdJQKgW6E1hdZ5PhiMbwW8beH3NBo65HsJrM\
+m5d3zOIIWcEU7xB8CHOWJFbICbiQyBIpuB2mSCy3BlzrgnI+gL+AsESWCULkwkpynhqaN+x1\
+DUlg3KxQuZb65SSQVUEiNaQ7njVS1iXUjyWyY4xZszPao3KWMJNKoVMjS3hN2wjWsAFrqhlP\
+ai3YVsHrvFQwjQYfNc6U5VhqJd6+NCmIYra/FGhuMRh6fxvM4803dfdHkYHt04cqugJEObl3\
+7wEAAA==";
 
 test('unpacking the composers BLOB', async () => {
-    const composers = await unpackComposers(fourComposers);
-    expect(composers.length).toEqual(4);
-    expect(composers[1].givenName).toEqual(['Bror', 'Axel', 'Lille Bror']);
-    expect(composers[3].country).toEqual(['Norge', 'Sverige']);
+    const db = await unpackComposerDb(fourComposers);
+    expect(db.composers.length).toEqual(4);
+    expect(db.composers[1].givenName).toEqual('Bror Axel Lille Bror');
+    expect(db.composers[3].country).toEqual('Norge, Sverige');
 });

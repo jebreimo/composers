@@ -12,12 +12,14 @@ import json
 import os
 import sys
 import templateprocessor
+import unicodedata
 
 
 """
-This script converts a list of composers to JSON, then compresses the JSON
-with gzip, encodes the result with BASE64, then wraps it inside a basic
- TypeScript file which it writes to stdout.
+This script takes in a list of composers, removes lines that
+are there for the human reader, but irrelevant for a computer program,
+compresses it with gzip, encodes the result with BASE64, then wraps it
+inside a basic TypeScript file which it writes to stdout.
 """
 
 
@@ -53,6 +55,22 @@ def split_name(name: str):
     return names
 
 
+def get_unicode_base_str(s: str):
+    return "".join(unicodedata.normalize("NFD", c)[0] for c in s)
+
+
+def get_unique_names(name: str):
+    names = split_name(name)
+    for i in range(len(names)):
+        name = names[i]
+        base_name = get_unicode_base_str(name)
+        if base_name != name:
+            names.append(base_name)
+    if len(names) == 1:
+        return None
+    return names
+
+
 class Composer:
     def __init__(self):
         self.surname = None
@@ -70,9 +88,13 @@ class Composer:
     def to_dict(self):
         result = {}
         if self.surname:
-            result["surname"] = split_name(self.surname)
+            result["surname"] = self.surname
+            if names := get_unique_names(self.surname):
+                result["surnames"] = names
         if self.given_name:
-            result["givenName"] = split_name(self.given_name)
+            result["givenName"] = self.given_name
+            if names := get_unique_names(self.given_name):
+                result["givenNames"] = names
         result["country"] = [c.strip() for c in self.country.split(",")]
         result["birth"] = self.birth_year
         result["death"] = self.death_year
