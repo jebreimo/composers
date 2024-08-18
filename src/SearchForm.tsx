@@ -11,7 +11,7 @@ import Box from '@mui/material/Box';
 
 export type SearchType = "surname" | "given";
 
-export type SearchFormProps = {
+export interface SearchFormProps {
     searchType?: SearchType;
     allowPartialMatch?: boolean;
     query?: string;

@@ -1,19 +1,33 @@
 import * as React from 'react';
-import EnhancedTable from "./ComposerTable.tsx";
+import ComposerTable from "./ComposerTable.tsx";
 import Typography from "@mui/material/Typography";
 import Box from '@mui/material/Box';
 import {SearchForm} from "./SearchForm.tsx";
 import {createTheme, ThemeProvider, useMediaQuery} from "@mui/material";
+import {getDefaultComposerDb, IComposer} from "./FindComposers.ts";
 
 export default function App() {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-    const darkTheme = createTheme({
+    const theme = createTheme({
         palette: {
             mode:  prefersDarkMode ? 'dark' : 'light',
         },
     });
 
-    return <ThemeProvider theme={darkTheme}>
+    const [selectedComposers, setSelectedComposers] = React.useState<IComposer[]>([]);
+    const [query, setQuery] = React.useState("");
+    const [searchType, setSearchType] = React.useState("surname");
+    const [allowPartialMatch, setAllowPartialMatch] = React.useState(false);
+
+    const onApplyQuery = () => {
+        console.log("Apply query");
+    }
+
+    React.useEffect(() => {
+        getDefaultComposerDb().then((db) => setSelectedComposers(db.composers));
+    });
+
+    return <ThemeProvider theme={theme}>
         <Box
             display="flex"
             flexDirection="column"
@@ -27,14 +41,15 @@ export default function App() {
                 Composer Search
             </Typography>
             <SearchForm
-                searchType="surname"
-                onQueryChanged={(query) => console.log(query)}
-                onSearchTypeChanged={(searchType) => console.log(searchType)}
-                onApplyQuery={() => console.log("Apply query")}
-                onAllowPartialMatchChanged={(allowPartialMatch) => console.log(allowPartialMatch)}
+                onQueryChanged={(value) => setQuery(value)}
+                onSearchTypeChanged={(value) => setSearchType(value)}
+                onApplyQuery={() => onApplyQuery()}
+                onAllowPartialMatchChanged={(value) => setAllowPartialMatch(value)}
                 sx={{marginBottom: 2}}
             />
-            <EnhancedTable/>
+            <ComposerTable
+                composers={selectedComposers}
+            />
         </Box>
     </ThemeProvider>;
 }

@@ -11,9 +11,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import Paper from '@mui/material/Paper';
 import {visuallyHidden} from '@mui/utils';
 import Box from '@mui/material/Box'; // Box must be imported last to avoid a bug in the MUI library (theme initialization).
-import {getDefaultComposerDb, IComposer} from "./FindComposers.ts";
-
-const composerDb = await getDefaultComposerDb();
+import {IComposer} from "./FindComposers.ts";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
@@ -92,14 +90,14 @@ const headCells: readonly HeadCell[] = [
     },
 ];
 
-interface EnhancedTableProps {
+interface ComposerTableHeadProps {
     onRequestSort: (event: React.MouseEvent<unknown>, property: keyof IComposer) => void;
     order: Order;
     orderBy: string;
     rowCount: number;
 }
 
-function EnhancedTableHead(props: EnhancedTableProps) {
+function ComposerTableHead(props: ComposerTableHeadProps) {
     const {
         order,
         orderBy,
@@ -141,7 +139,11 @@ function EnhancedTableHead(props: EnhancedTableProps) {
     );
 }
 
-export default function EnhancedTable() {
+export interface ComposerTableProps {
+    composers: IComposer[];
+}
+
+export default function ComposerTable(props: ComposerTableProps) {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof IComposer>('surname');
     const [page, setPage] = React.useState(0);
@@ -167,15 +169,15 @@ export default function EnhancedTable() {
 
     // Avoid a layout jump when reaching the last page with empty rows.
     const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - composerDb.composers.length) : 0;
+        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - props.composers.length) : 0;
 
     const visibleRows = React.useMemo(
         () =>
-            composerDb.composers.slice().sort(getComparator(order, orderBy)).slice(
+            props.composers.slice().sort(getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
-        [order, orderBy, page, rowsPerPage],
+        [order, orderBy, page, rowsPerPage, props.composers],
     );
 
     return (
@@ -188,11 +190,11 @@ export default function EnhancedTable() {
                         aria-labelledby="tableTitle"
                         size={'small'}
                     >
-                        <EnhancedTableHead
+                        <ComposerTableHead
                             order={order}
                             orderBy={orderBy}
                             onRequestSort={handleRequestSort}
-                            rowCount={composerDb.composers.length}
+                            rowCount={props.composers.length}
                         />
                         <TableBody>
                             {visibleRows.map((row, index) => {
@@ -239,7 +241,7 @@ export default function EnhancedTable() {
                 <TablePagination
                     rowsPerPageOptions={[10, 25, 50]}
                     component="div"
-                    count={composerDb.composers.length}
+                    count={props.composers.length}
                     rowsPerPage={rowsPerPage}
                     page={page}
                     onPageChange={handleChangePage}
