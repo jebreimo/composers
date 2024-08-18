@@ -1,5 +1,5 @@
 // import * as zlib from 'zlib';
-import {packedComposers} from './all_composers.txt.ts';
+import {packedComposers} from './all_composers.txt';
 
 interface IDbComposer {
     surname?: string;
