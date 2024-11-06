@@ -147,7 +147,7 @@ export default function ComposerTable(props: ComposerTableProps) {
     const [order, setOrder] = React.useState<Order>('asc');
     const [orderBy, setOrderBy] = React.useState<keyof IComposer>('surname');
     const [page, setPage] = React.useState(0);
-    const [rowsPerPage, setRowsPerPage] = React.useState(10);
+    const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
     const handleRequestSort = (
         _ev: React.MouseEvent<unknown>,
@@ -173,7 +173,7 @@ export default function ComposerTable(props: ComposerTableProps) {
 
     const visibleRows = React.useMemo(
         () =>
-            props.composers.slice().sort(getComparator(order, orderBy)).slice(
+            props.composers.sort(getComparator(order, orderBy)).slice(
                 page * rowsPerPage,
                 page * rowsPerPage + rowsPerPage,
             ),
