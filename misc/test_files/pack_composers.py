@@ -19,7 +19,7 @@ import unicodedata
 This script takes in a list of composers, removes lines that
 are there for the human reader, but irrelevant for a computer program,
 compresses it with gzip, encodes the result with BASE64, then wraps it
-inside a basic TypeScript file which it writes to stdout.
+inside a basic TypeScript file which it writes to stdout. 
 """
 
 
@@ -56,7 +56,11 @@ def split_name(name: str):
 
 
 def get_unicode_base_str(s: str):
-    return "".join(unicodedata.normalize("NFD", c)[0] for c in s)
+    result = []
+    for c in unicodedata.normalize('NFKD', s):
+        if not unicodedata.category(c).startswith('M'):
+            result.append(c)
+    return ''.join(result)
 
 
 def get_unique_names(name: str):
@@ -128,7 +132,8 @@ def main():
         print(f"usage: {os.path.basename(sys.argv[0])} <file>")
         return 1
     composers = parse_file(sys.argv[1])
-    text = json.dumps([c.to_dict() for c in composers], ensure_ascii=False,
+    text = json.dumps([c.to_dict() for c in composers],
+                      ensure_ascii=False,
                       separators=(",", ":"))
     expander = templateprocessor.ObjectExpander(Composers(text))
     print(templateprocessor.make_text(TEMPLATE, expander))

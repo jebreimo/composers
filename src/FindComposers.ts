@@ -57,7 +57,7 @@ async function unpackComposers(packedComposers: string) {
 
 export type QueryType = "surname" | "given";
 
-export interface Query {
+export interface IQuery {
     expression: string;
     partialMatch: boolean;
     queryType: QueryType;
@@ -123,9 +123,11 @@ function buildIndex(composers: IDbComposer[]): IComposerIndex {
 
 function findComposersByIndex(regExp: RegExp, index: IndexEntry[], composers: IComposer[]): IComposer[] {
     const results: IComposer[] = [];
+    const visited = new Set<number>();
     for (const entry of index) {
-        if (regExp.test(entry.name)) {
+        if (!visited.has(entry.index) && regExp.test(entry.name)) {
             results.push(composers[entry.index]);
+            visited.add(entry.index);
         }
     }
     return results;
@@ -134,7 +136,7 @@ function findComposersByIndex(regExp: RegExp, index: IndexEntry[], composers: IC
 export interface IComposerDb {
     composers: IComposer[];
 
-    find(query: Query): Promise<IComposer[]>;
+    find(query: IQuery): Promise<IComposer[]>;
 }
 
 class ComposerDb implements IComposerDb {
@@ -149,12 +151,18 @@ class ComposerDb implements IComposerDb {
         this.givenNames = index.givenNames;
     }
 
-    public async find(query: Query): Promise<IComposer[]> {
+    public async find(query: IQuery): Promise<IComposer[]> {
         try {
             if (query.expression.length === 0) {
                 return [];
             }
-            const regExp = new RegExp(query.expression, 'i');
+            let expression = query.expression;
+            if (!query.partialMatch) {
+                const prefix = query.expression.startsWith("^") ? "" : "^";
+                const suffix = query.expression.endsWith("$") ? "" : "$";
+                expression = prefix + query.expression + suffix;
+            }
+            const regExp = new RegExp(expression, 'i');
             return findComposersByIndex(
                 regExp,
                 query.queryType === "surname" ? this.surnames : this.givenNames,
