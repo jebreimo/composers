@@ -149,6 +149,14 @@ export default function ComposerTable(props: ComposerTableProps) {
     const [page, setPage] = React.useState(0);
     const [rowsPerPage, setRowsPerPage] = React.useState(25);
 
+    const handleComposersChanged = () => {
+        setPage(0);
+    };
+
+    React.useEffect(() => {
+        handleComposersChanged();
+    }, [props.composers]);
+
     const handleRequestSort = (
         _ev: React.MouseEvent<unknown>,
         property: keyof IComposer,
