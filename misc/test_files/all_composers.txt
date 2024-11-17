@@ -236,6 +236,7 @@ Liszt; Franz; Ungarn; 1811; 1886;
 Lloyd; George; England; 1913; 1998;
 Loewe; Frederick; USA, Tyskland; 1901; 1988; Musicals
 Lohse; Martin; Danmark; ; ;
+Lotti; Antonio; Italia; 1667; 1740;
 Lucas; Leighton; England; 1903; 1982;
 Lully; Jean-Baptiste; Italia; 1632; 1687; Frankrike
 Lunde; Johan Backer; Norge; 1874; 1958;
@@ -351,6 +352,7 @@ Busoni; Ferruccio; Italia; 1866; 1924;
 Carafa; Michele; Italia; 1787; 1872; Franske operaer
 Cardew; Cornelius; England; 1936; 1981;
 Carter; Andrew; England; 1939; ;
+Casini; Giovanni Maria; Italia; 1652; 1719;
 Casken; John; England; 1949; ;
 Chopin; Frederic; Polen; 1810; 1849;
 Clarke; Jeremiah; England; 1673; 1707; "Trumpet Voluntary"
@@ -885,9 +887,9 @@ Kreisler; Fritz; Østerrike, USA; 1875; 1962;
 Krossing; Peter Casper; Danmark; ; ;
 Legrenzi; Giovanni; Italia; 1626; 1690;
 Leighton; Kenneth; England; 1929; 1988;
-Lidström; Mats; Sverige; ; ;
-Liebmann; Axel; Danmark; ; ;
-Liebmann; Nanna; Danmark; ; ;
+Lidström; Mats; Sverige; 1959; ;
+Liebmann; Axel; Danmark; 1849; 1876;
+Liebmann; Nanna; Danmark; 1849; 1935;
 Lindberg; Christian; Sverige; ; ;
 Lindberg; Magnus; Finland; 1958; ;
 Lindberg; Oskar; Sverige; 1887; 1955;
@@ -960,6 +962,8 @@ Truscott; Harold; England; 1914; 1992;
 Ulfrstad; Marius Moaritz; Norge; 1890; 1968;
 Vajnberg; Moisej; Russland; 1919; 1996; Mieczysław Weinberg, født i Polen
 Venables; Ian; England; 1955; ;
+Veracini; Antonio; Italia; 1659; 1733;
+Veracini; Francesco Maria; Italia; 1690; 1768; Fiolinsonater
 Victoria; Tomás Luis de; Spania; 1548; 1611;
 Wernicke; Israel Gottlieb; Norge; 1755; 1836;
 Whitlock; Percy; England; 1903; 1946;
