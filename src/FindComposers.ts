@@ -162,6 +162,7 @@ class ComposerDb implements IComposerDb {
                 const suffix = query.expression.endsWith("$") ? "" : "$";
                 expression = prefix + query.expression + suffix;
             }
+            expression = expression.replace(/\u2026/g, "...");
             const regExp = new RegExp(expression, 'i');
             return findComposersByIndex(
                 regExp,
