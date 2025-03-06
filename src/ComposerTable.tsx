@@ -12,6 +12,7 @@ import Paper from '@mui/material/Paper';
 import {visuallyHidden} from '@mui/utils';
 import Box from '@mui/material/Box'; // Box must be imported last to avoid a bug in the MUI library (theme initialization).
 import {IComposer} from "./FindComposers.ts";
+import {makeGoogleQuery} from "./MakeGoogleQuery.ts";
 
 function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
@@ -205,35 +206,7 @@ export default function ComposerTable(props: ComposerTableProps) {
                             rowCount={props.composers.length}
                         />
                         <TableBody>
-                            {visibleRows.map((row, index) => {
-                                const labelId = `enhanced-table-checkbox-${index}`;
-
-                                return (
-                                    <TableRow
-                                        hover
-                                        role="checkbox"
-                                        aria-checked={false}
-                                        tabIndex={-1}
-                                        key={row.id}
-                                        selected={false}
-                                        sx={{cursor: 'pointer'}}
-                                    >
-                                        <TableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            padding="none"
-                                        >
-                                            {row.surname}
-                                        </TableCell>
-                                        <TableCell>{row.givenName}</TableCell>
-                                        <TableCell>{row.country}</TableCell>
-                                        <TableCell align="right">{row.birth}</TableCell>
-                                        <TableCell align="right">{row.death}</TableCell>
-                                        <TableCell>{row.note}</TableCell>
-                                    </TableRow>
-                                );
-                            })}
+                            {visibleRows.map(makeTableRow)}
                             {emptyRows > 0 && (
                                 <TableRow
                                     style={{
@@ -258,4 +231,36 @@ export default function ComposerTable(props: ComposerTableProps) {
             </Paper>
         </Box>
     );
+
+    function makeTableRow(row: IComposer, index: number) {
+        const labelId = `enhanced-table-checkbox-${index}`;
+        const queryUrl = makeGoogleQuery(row.givenName, row.surname);
+        return (
+            <TableRow
+                hover
+                role="checkbox"
+                aria-checked={false}
+                tabIndex={-1}
+                key={row.id}
+                selected={false}
+                sx={{cursor: 'pointer'}}
+            >
+                <TableCell
+                    component="th"
+                    id={labelId}
+                    scope="row"
+                    padding="none"
+                >
+                    <a href={queryUrl} target="_blank" rel="noopener noreferrer">{row.surname}</a>
+                </TableCell>
+                <TableCell>
+                    <a href={queryUrl} target="_blank" rel="noopener noreferrer">{row.givenName}</a>
+                </TableCell>
+                <TableCell>{row.country}</TableCell>
+                <TableCell align="right">{row.birth}</TableCell>
+                <TableCell align="right">{row.death}</TableCell>
+                <TableCell>{row.note}</TableCell>
+            </TableRow>
+        );
+    }
 }
