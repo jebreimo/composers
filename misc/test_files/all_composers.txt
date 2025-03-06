@@ -19,8 +19,9 @@ Nin; Joaquín; Cuba; 1879; 1949;
 Ore; Cecilie; Norge; 1954; ;
 Orr; Buxton; England; 1924; 1997;
 Pot; Francis; England; 1957; ;
-Puy; Jean Baptiste Édouard Du; Danmark; ; ;
+Puy; Jean Baptiste Édouard Du; Sveits, Danmark; 1770; 1822;
 Roe; Betty; England; 1930; ;
+Sor; Fernando; Spania; 1778; 1839; Gitar
 Suk; Josef; Tsjekkia; 1874; 1935;
 Vea; Ketil; Norge; 1932; ;
 
@@ -44,6 +45,7 @@ Blom; Christian; Norge; 1782; 1861; Sønner av Norge
 Borg; Kim; Danmark; ; ;
 Borg; Oscar; Norge; 1851; 1930;
 Bray; Charlotte; England; 1982; ;
+Brel; Jaque; Belgia; 1929; 1978; Sanger
 Buck; Ole; Danmark; ; ;
 Bull; Edvard Hagerup; Norge; 1922; 2012;
 Bull; John; Storbritannia; 1562; 1628; "God Save the Queen"
@@ -87,32 +89,35 @@ Kvam; Oddvar S.; Norge; 1927; 2016;
 Lalo; Édouard; Frankrike; 1823; 1892;
 Laub; Thomas; Danmark; ; ;
 Lund; Signe; Norge; 1868; 1950;
+Maza; Eduardo Sainz De La; Spania; 1903; 1982; Gitar
+Maza; Regino Sainz de la; Spania; 1896; 1981; Gitar
 Ness; Jon Øivind; Norge; 1968; ;
 Nunn; Patrick; England; 1969; ;
-Olin; Elisabeth; Sverige; ; ;
+Olin; Elisabeth; Sverige; 1740; 1828; Operasanger
 Oram; Daphne; England; 1925; 2003;
 Orff; Carl; Tyskland; 1895; 1982;
-Pade; Else Marie; Danmark; ; ;
-Pade; Steen; Danmark; ; ;
+Pade; Else Marie; Danmark; 1924; 2016;
+Pade; Steen; Danmark; 1956; ;
 Prés; Josquin des; Frankrike; 1450; 1521; egentlig Lebloitte, også Des Prez og Desprez
 Pärt; Arvo; Estland; 1935; ;
-Rabe; Folke; Sverige; ; ;
+Rabe; Folke; Sverige; 1935; 2017;
 Ries; Ferdinand; Tyskland; 1784; 1838; "Beethoven's right hand man"
 Rihm; Wolfgang; Tyskland; 1952; ;
-Ring; Oluf; Danmark; ; ;
+Ring; Oluf; Danmark; 1884; 1946;
 Rota; Nino; Italia; 1911; 1979; Filmmusikk, Gudfaren
-Rung; Frederik; Danmark; ; ;
-Rung; Henrik; Danmark; ; ;
+Rung; Frederik; Danmark; 1854; 1914;
+Rung; Henrik; Danmark; 1807; 1871;
 Sanz; Gaspar; Spania; 1640; 1710;
 Shaw; Christopher; England; 1925; 1995;
 Siem; Sasha; England; 1984; ;
-Skov; Kira; Danmark; ; ;
-Sund; John; Danmark; ; ;
+Skov; Kira; Danmark; 1976; ;
+Sund; John; Danmark; 1957; ;
 Tate; Phyllis; England; 1911; 1987;
+Ulvo; Therese Birkelund; Norge; 1982; ;
 Wade; John Francis; Storbritannia; 1711; 1786;
 Weir; Judith; England; 1954; ;
-Weis; Flemming; Danmark; ; ;
-West; Tue; Danmark; ; ;
+Weis; Flemming; Danmark; 1898; 1981;
+West; Tue; Danmark; 1977; ;
 Wolf; Hugo; Tyskland; 1860; 1903; Lieder
 
 5
@@ -228,7 +233,7 @@ Jones; Robert; England; 1577; 1617; Jones II
 Kraus; Joseph Martin; Tyskland, Sverige; 1756; 1792;
 Kruse; Bjørn Howard; Norge; 1946; ;
 Kærså; Morten; Danmark; ; ;
-Lasso; Orlando di; Frankrike; 1532; 1594;
+Lasso; Orlando di; Belgia; 1532; 1594;
 Lehár; Franz; Tyskland; 1870; 1948;
 Leigh; Walter; England; 1905; 1942;
 Linde; Bo; Sverige; ; ;
@@ -245,7 +250,7 @@ March; Andrew; England; 1973; ;
 Mason; Benedict; England; 1954; ;
 Mason; Grace Evangeline; England; 1994; ;
 Mawby; Colin; England; 1936; 2019;
-Mazur; Marilyn; Danmark; ; ;
+Mertz; Johann Kaspar; Slovakia, Østerrike; 1806; 1856; Gitar
 Monti; Vittorio; Italia; 1868; 1922; Csárdás
 Moody; Ivan; England; 1964; 2024;
 Moret; Norbert; Sveits; 1921; 1998;
@@ -416,6 +421,7 @@ Gowers; Patrick; England; 1936; 2014;
 Grange; Philip; England; 1956; ;
 Grothe; Georg; Danmark; ; ;
 Groven; Eivind; Norge; 1901; 1977;
+Groven; Sigmund; Norge; 1946; ; Munnspill
 Gruber; Franz Xaver; Østerrike; 1787; 1863; "Glade Jul"
 Grétry; André; Frankrike; 1741; 1813; Smaagutternes nationalsang, født i Belgia
 Gurney; Ivor; England; 1890; 1937;
@@ -466,6 +472,7 @@ Laurin; Anna-Lena; Sverige; ; ;
 Lemare; Edwin; England; 1866; 1934;
 Ligeti; György; Ungarn; 1923; 2006;
 Linnet; Anne; Danmark; ; ;
+Ljadov; Anatolij; Russland; 1855; 1914;
 Lumbye; Hans Christian; Danmark; 1810; 1874;
 Lundén; Tom; Danmark; ; ;
 Löfman; Henriette; Sverige; ; ;
@@ -500,6 +507,7 @@ Pleyel; Ignaz Joseph; Østerike; 1757; 1831;
 Porter; Cole Albert; USA; 1891; 1964;
 Powell; John; England; 1963; ;
 Powell; Jonathan; England; 1969; ;
+Quantz; Johann Joachim; Tyskland; 1697; 1773; Fløytelærer til Frederik den store
 Rameau; Jean-Philippe; Frankrike; 1683; 1764;
 Ratkje; Maja; Norge; 1973; ;
 Reesen; Emil; Danmark; ; ;
@@ -587,6 +595,7 @@ Bologne; Joseph; Frankrike; 1745; 1799; Chevalier de Saint-Georges, "Black Mozar
 Borodin; Aleksandr; Russland; 1833; 1887;
 Britten; Benjamin; England; 1913; 1976;
 Britten; Benjamin; Storbritannia; 1913; 1976;
+Brouwer; Leo; Cuba; 1939; ; Gitar
 Brubeck; Dave; USA; 1920; 2012; Jazz, Blue Rondo a la Turk
 Brustad; Bjarne; Norge; 1895; 1978;
 Brustad; Karsten; Norge; 1959; ;
@@ -850,6 +859,7 @@ Gyldmark; Hugo; Danmark; ; ;
 Gyldmark; Sven; Danmark; ; ;
 Haarklou; Johannes; Norge; 1847; 1925;
 Hallager; Andreas; Danmark; ; ;
+Hallberg; Bengt; Sverige; 1932; 2013; TV- og filmmusikk, jazz
 Hartmann; August Wilhelm; Danmark; ; ;
 Hartmann; Emil; Danmark; ; ;
 Hartmann; Emma; Danmark; ; ;
@@ -1000,6 +1010,7 @@ Blackford; Richard; England; 1954; ;
 Boieldieu; François-Adrien; Frankrike; 1775; 1834; Operaer
 Boldemann; Laci; Sverige; ; ;
 Borgstrøm; Hjalmar; Norge; 1864; 1925;
+Bottesini; Giovanni; Italia; 1821; 1889; "Kontrabassens Paganini"
 Boulanger; Lili; Frankrike; 1893; 1918;
 Boulanger; Nadia; Frankrike; 1887; 1979;
 Bourgeois; Derek; England; 1941; 2017;
@@ -1079,10 +1090,12 @@ Rasmussen; Karl Aage; Danmark; ; ;
 Reissiger; Friedrich August; Tyskland, Norge; 1809; 1883;
 Rosenberg; Hilding; Sverige; ; ;
 Rosenfeld; Leopold; Danmark; ; ;
+Ruiz-Pipó; Antonio; Spania; 1934; 1997;
 Sainsbury; Lionel; England; 1958; ;
 Samuelson; Mikael; Sverige; ; ;
 Sandström; Jan; Sverige; ; ;
 Sandström; Sven-David; Sverige; ; ;
+Scarlatti; Alessandro; Italia; 1660; 1725;
 Scarlatti; Domenico; Italia; 1685; 1757;
 Schaathun; Asbjørn; Norge; 1961; ;
 Schindler; Poul Christian; Danmark; ; ;
@@ -1175,6 +1188,7 @@ Gubajdulina; Sofija; Russland; 1931; ;
 Hellstenius; Henrik; Norge; 1963; ;
 Hildebrandt; Christian; Danmark; ; ;
 Hillebrandt; Niels Peter; Danmark; ; ;
+Hoffmeister; Franz Anton; Østerrike; 1754; 1812; Også forlegger
 Humperdinck; Engelbert; Tyskland; 1854; 1921;
 Hye-Knudsen; Johan; Danmark; ; ;
 Islandsmoen; Sigurd; Norge; 1881; 1964;
@@ -1245,6 +1259,9 @@ Rimskij-Korsakov; Nikolaj; Russland; 1844; 1908;
 17
 Malmlöf-Forssling; Carin; Sverige; ; ;
 Wennerberg-Reuter; Sara; Sverige; ; ;
+
+19
+Castelnuovo-Tedesco; Mario; Italia; 1895; 1968; Gitar
 
 20
 Gudmundsen-Holmgreen; Pelle; Danmark; 1932; 2016;
