@@ -48,9 +48,8 @@ export default function App() {
     }
 
     const [selectedComposers, setSelectedComposers] = React.useState<IComposer[]>([]);
-    // const [query, setQuery] = React.useState("");
-    // const [searchType, setSearchType] = React.useState("surname");
-    // const [allowPartialMatch, setAllowPartialMatch] = React.useState(false);
+
+    const [isFirstQuery, setIsFirstQuery] = React.useState(true);
 
     const onApplyQuery = () => {
         if (query !== undefined)
@@ -59,13 +58,12 @@ export default function App() {
                 .then((db) => db.find(query))
                 .then((composers) => {
                     console.log("Found " + composers.length + " composers");
-                    setSelectedComposers(composers)
+                    setSelectedComposers(composers);
+                    setIsFirstQuery(false);
                 });
         }
         console.log("Apply query");
     }
-
-    // React.useEffect(() => onApplyQuery());
 
     return <ThemeProvider theme={theme}>
         <Box
@@ -73,6 +71,7 @@ export default function App() {
             flexDirection="column"
             justifyContent="center"
             alignItems="center"
+            minHeight={isFirstQuery && "100vh" || "auto"}
         >
             <Typography
                 variant="h3"
@@ -87,9 +86,11 @@ export default function App() {
                 onAllowPartialMatchChanged={(value) => handleSetPartialMatch(value)}
                 sx={{marginBottom: 2}}
             />
-            <ComposerTable
-                composers={selectedComposers}
-            />
+            {!isFirstQuery &&
+                <ComposerTable
+                    composers={selectedComposers}
+                />
+            }
         </Box>
     </ThemeProvider>;
 }
