@@ -48,7 +48,7 @@ export function SearchForm(props: SearchFormProps ) {
         >
             <TextField
                 id="filled-search"
-                label={searchType === "surname" ? "Surname" : "Given name"}
+                label={searchType === "surname" ? "Etternavn" : "Fornavn"}
                 type="search"
                 variant="standard"
                 sx={{marginBottom: "25px", marginRight: "10px", marginLeft: "10px"}}
@@ -63,7 +63,7 @@ export function SearchForm(props: SearchFormProps ) {
                     variant="contained"
                     onClick={props.onApplyQuery}
                 >
-                    Search
+                    Søk
                 </Button>
             </Box>
             <Checkbox
@@ -85,8 +85,8 @@ export function SearchForm(props: SearchFormProps ) {
                     onChange={onSearchTypeChanged}
                     aria-label="Platform"
                 >
-                    <ToggleButton value="given">Given Name</ToggleButton>
-                    <ToggleButton value="surname">Surname</ToggleButton>
+                    <ToggleButton value="given">For- og mellomnavn</ToggleButton>
+                    <ToggleButton value="surname">Etternavn</ToggleButton>
                 </ToggleButtonGroup>
                 <FormControlLabel
                     control={<Checkbox
@@ -96,7 +96,7 @@ export function SearchForm(props: SearchFormProps ) {
                             props.onAllowPartialMatchChanged(ev.target.checked);
                         }}
                     />}
-                    label="Allow partial match"/>
+                    label="Delvise treff"/>
             </Stack>
         }
     </Box>

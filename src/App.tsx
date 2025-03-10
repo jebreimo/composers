@@ -5,6 +5,7 @@ import Box from '@mui/material/Box';
 import {SearchForm} from "./SearchForm.tsx";
 import {createTheme, ThemeProvider, useMediaQuery} from "@mui/material";
 import {getDefaultComposerDb, IComposer, IQuery, QueryType} from "./FindComposers.ts";
+import {nbNO} from '@mui/material/locale';
 
 interface IAction {
     type: string;
@@ -26,10 +27,11 @@ const queryReducer = (state: IQuery, action: IAction): IQuery => {
 export default function App() {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = createTheme({
-        palette: {
-            mode:  prefersDarkMode ? 'dark' : 'light',
+            palette: {
+                mode:  prefersDarkMode ? 'dark' : 'light',
+            }
         },
-    });
+        nbNO);
 
     const [query, dispatchQuery] = React.useReducer(queryReducer,
         {expression: ".*", partialMatch: false, queryType: "surname"});
@@ -77,7 +79,7 @@ export default function App() {
                 variant="h3"
                 sx={{marginBottom: 2}}
             >
-                Composer Search
+                Komponistsøk
             </Typography>
             <SearchForm
                 onQueryChanged={(value) => handleSetExpression(value)}

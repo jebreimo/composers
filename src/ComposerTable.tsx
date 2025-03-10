@@ -1,5 +1,4 @@
 import * as React from 'react';
-// import {alpha} from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
 import TableCell from '@mui/material/TableCell';
@@ -51,42 +50,42 @@ const headCells: readonly HeadCell[] = [
         id: 'surname',
         numeric: false,
         disablePadding: true,
-        label: 'Surname',
+        label: 'Etternavn',
         width: "15%"
     },
     {
         id: 'givenName',
         numeric: false,
         disablePadding: true,
-        label: 'Given name',
+        label: 'For- og mellomnavn',
         width: "20%"
     },
     {
         id: 'country',
         numeric: false,
         disablePadding: true,
-        label: 'Nationality',
+        label: 'Nasjonalitet',
         width: "15%"
     },
     {
         id: 'birth',
         numeric: true,
         disablePadding: false,
-        label: 'Born',
+        label: 'Født',
         width:"5%"
     },
     {
         id: 'death',
         numeric: true,
         disablePadding: false,
-        label: 'Died',
+        label: 'Død',
         width: "5%"
     },
     {
         id: 'note',
         numeric: false,
         disablePadding: true,
-        label: 'Note',
+        label: 'Kommentar',
         width: "40%"
     },
 ];
