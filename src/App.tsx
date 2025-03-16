@@ -24,6 +24,17 @@ const queryReducer = (state: IQuery, action: IAction): IQuery => {
     }
 }
 
+function Subtitle() {
+    const rawHtml = "<p>for løsing av kryssord og <a href='https://radio.nrk.no/serie/rebus-radio' target='_blank' rel='noopener noreferrer'>NRK Klassisk's rebus</a>.</p>";
+    return <div dangerouslySetInnerHTML={{__html: rawHtml}}/>;
+}
+
+function Title() {
+    return <Typography variant="h3">
+        Komponistsøk
+    </Typography>;
+}
+
 export default function App() {
     const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
     const theme = createTheme({
@@ -75,18 +86,14 @@ export default function App() {
             alignItems="center"
             minHeight={isFirstQuery && "100vh" || "auto"}
         >
-            <Typography
-                variant="h3"
-                sx={{marginBottom: 2}}
-            >
-                Komponistsøk
-            </Typography>
+            <Title />
+            <Subtitle />
             <SearchForm
                 onQueryChanged={(value) => handleSetExpression(value)}
                 onSearchTypeChanged={(value) => handleSetQueryType(value)}
                 onApplyQuery={() => onApplyQuery()}
                 onAllowPartialMatchChanged={(value) => handleSetPartialMatch(value)}
-                sx={{marginBottom: 2}}
+                sx={{marginBottom: 2, marginTop: 2}}
             />
             {!isFirstQuery &&
                 <ComposerTable
