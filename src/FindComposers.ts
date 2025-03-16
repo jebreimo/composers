@@ -52,7 +52,7 @@ async function decompressBlob(blob: Blob) {
 async function unpackComposers(packedComposers: string) {
     const blob = base64ToBlob(packedComposers);
     const str = await (await decompressBlob(blob)).text();
-    return eval(str) as IDbComposer[];
+    return JSON.parse(str) as IDbComposer[];
 }
 
 export type QueryType = "surname" | "given";
